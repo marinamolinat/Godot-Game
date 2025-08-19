@@ -1,10 +1,15 @@
 extends RigidBody2D
 
-var pickUp = false
-var playerBody = null
+var pickUp = true
+@onready var playerBody = get_node("../player")
+
 var equiped = false
 # Called when the node enters the scene tree for the first time.
 
+func _ready():
+	print(playerBody)
+	print("feafajehgf")
+	
 
 func pickup():
 	if playerBody == null:
@@ -15,7 +20,7 @@ func pickup():
 	position = Vector2.ZERO 
 	self.rotation = deg_to_rad(90)
 	self.freeze = true
-	$Area2D/CollisionShape2D.disabled = true
+	
 	
 func throw(direction: Vector2, strength: float = 400.0):
 	if playerBody == null:
@@ -29,7 +34,7 @@ func throw(direction: Vector2, strength: float = 400.0):
 	self.freeze = false
 	 
 	linear_velocity = direction.normalized() * strength
-	$Area2D/CollisionShape2D.disabled = false
+	
 		
 	
 	
@@ -44,6 +49,7 @@ func _process(delta: float) -> void:
 		equiped = true
 	elif equiped and Input.is_key_pressed(KEY_D):
 		throw(Vector2(100, 1000), 4011.1)
+		pickUp = true
 	
 		
 			
@@ -52,8 +58,5 @@ func _process(delta: float) -> void:
 
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerBody = body
-	pickUp = true
 	
 		

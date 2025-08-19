@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8ts5siibjdhf"]
+[gd_scene load_steps=17 format=3 uid="uid://c8ts5siibjdhf"]
 
 [ext_resource type="Script" uid="uid://bfyfqt32x4nd7" path="res://scripts/torch.gd" id="1_s1444"]
 [ext_resource type="Texture2D" uid="uid://5f25irlssueq" path="res://assets/Antorch.png" id="3_kx7w4"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1444"]
 size = Vector2(96.4458, 14.3717)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pa17o"]
-radius = 80.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_72pgl"]
 atlas = ExtResource("3_kx7w4")
@@ -105,15 +102,6 @@ rotation = 0.880493
 scale = Vector2(0.88, 1)
 shape = SubResource("RectangleShape2D_s1444")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-121, -100)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(96, 69)
-shape = SubResource("CircleShape2D_pa17o")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-60, -67)
 color = Color(0.966572, 0.575242, 0.482953, 1)
@@ -127,6 +115,3 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.166337
 flip_h = true
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
