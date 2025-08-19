@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmw85n2rxe4ec"]
+
+[ext_resource type="PackedScene" uid="uid://4jmgtao5njy3" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://ddl17sjnigig7" path="res://icon.svg" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://c8ts5siibjdhf" path="res://scenes/torch.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b3vvwwwomhoeq" path="res://scenes/skeleton.tscn" id="4_lbhrr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(34, 508.5)
+
+[node name="game" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(14, -18)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 76)
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.253843, 0.253843, 0.253843, 1)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-321, -189)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(-321, -175)
+scale = Vector2(0.289062, 3.86719)
+texture = ExtResource("2_lnu2h")
+
+[node name="torch" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(-227, -69)
+
+[node name="skeleton" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(317, -16)
