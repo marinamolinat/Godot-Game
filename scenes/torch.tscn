@@ -1,11 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8ts5siibjdhf"]
+[gd_scene load_steps=18 format=3 uid="uid://c8ts5siibjdhf"]
 
 [ext_resource type="Script" uid="uid://bfyfqt32x4nd7" path="res://scripts/torch.gd" id="1_s1444"]
 [ext_resource type="Texture2D" uid="uid://5f25irlssueq" path="res://assets/Antorch.png" id="3_kx7w4"]
-[ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_w3qnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1444"]
 size = Vector2(93.5514, 14.3717)
+
+[sub_resource type="Gradient" id="Gradient_my26j"]
+offsets = PackedFloat32Array(0, 0.201657, 0.531768, 0.994475)
+colors = PackedColorArray(1, 1, 1, 1, 0.964706, 0.866667, 0.105882, 1, 0.929412, 0.403922, 0.101961, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o2tjn"]
+gradient = SubResource("Gradient_my26j")
+width = 700
+height = 700
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_72pgl"]
 atlas = ExtResource("3_kx7w4")
@@ -104,8 +115,7 @@ shape = SubResource("RectangleShape2D_s1444")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-39, -48)
-color = Color(0.914373, 0.347128, 0, 1)
-texture = ExtResource("3_w3qnr")
+texture = SubResource("GradientTexture2D_o2tjn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-29, -32)
