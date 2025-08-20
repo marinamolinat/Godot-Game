@@ -1,11 +1,65 @@
 extends CharacterBody2D
 
-
+var health = 3
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 var lastDirection = -1
 
 var direction := 1
+
+@onready var heart = preload("res://scenes/heart.tscn")
+@onready var effects = $effects
+
+
+func drawHearts():
+	var parent = $CanvasLayer/HBoxContainer
+	
+	#clear all hearts
+	parent.get_children().map(func(c): c.queue_free())
+
+	#Draws current health
+	for i in range(health):
+		var inst = heart.instantiate()
+		parent.add_child(inst)
+
+	
+
+
+
+
+func _ready() -> void:
+	drawHearts()
+	effects.play("RESET")
+	
+		
+
+func updateHealth(n: int):
+	health += n
+	drawHearts()
+
+	if n < 0:
+		
+		#death :(
+		if health <= 0:
+			$CollisionShape2D.queue_free()
+			$hurtSound.play()
+			$deathTimer.start()
+			await $deathTimer.timeout
+			get_tree().reload_current_scene()
+			
+		
+		effects.play("damage")
+		$hurtSound.play()
+		$hurtTimer.start()
+		await $hurtTimer.timeout
+		
+		
+		
+		
+		
+	effects.play("RESET")
+	
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://4jmgtao5njy3"]
+[gd_scene load_steps=21 format=3 uid="uid://4jmgtao5njy3"]
 
 [ext_resource type="Script" uid="uid://3ugh8uoog45o" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bl18euuec70if" path="res://assets/aybe.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://b8lkrbfyam3ii" path="res://assets/walking.png" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://cha61sr3glpus" path="res://assets/hurt.wav" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(57, 113)
@@ -90,6 +91,61 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "damage"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.913725, 0.0862745, 0.105882, 1), Color(0.995772, 0.941547, 0.944164, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "reset"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.913725, 0.0862745, 0.105882, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlg0r"]
+_data = {
+&"RESET": SubResource("Animation_dqkch"),
+&"damage": SubResource("Animation_qhqgy"),
+&"reset": SubResource("Animation_qlg0r")
+}
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_g2els")
@@ -103,9 +159,39 @@ position = Vector2(-40, 15)
 rotation = -1.69821
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+clip_children = 2
 position = Vector2(-70, 30)
 sprite_frames = SubResource("SpriteFrames_qlg0r")
 animation = &"walk"
 autoplay = "idle"
 frame_progress = 0.542955
 flip_h = true
+
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
+offset_left = 119.0
+offset_top = -100.0
+offset_right = 161.0
+offset_bottom = -59.0
+scale = Vector2(-2.62174, 3.21284)
+color = Color(1, 1, 1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="effects" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qlg0r")
+}
+
+[node name="hurtTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="hurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dqkch")
+
+[node name="deathTimer" type="Timer" parent="."]
+wait_time = 3.58
+one_shot = true
