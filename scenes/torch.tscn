@@ -104,7 +104,7 @@ shape = SubResource("RectangleShape2D_s1444")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-39, -48)
-color = Color(0.966572, 0.575242, 0.482953, 1)
+color = Color(0.914373, 0.347128, 0, 1)
 texture = ExtResource("3_w3qnr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
