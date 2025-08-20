@@ -1,28 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmw85n2rxe4ec"]
+[gd_scene load_steps=8 format=3 uid="uid://bmw85n2rxe4ec"]
 
 [ext_resource type="PackedScene" uid="uid://4jmgtao5njy3" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://ddl17sjnigig7" path="res://icon.svg" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c8ts5siibjdhf" path="res://scenes/torch.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://b3vvwwwomhoeq" path="res://scenes/skeleton.tscn" id="4_lbhrr"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lbhrr"]
+light_mode = 2
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
 size = Vector2(34, 508.5)
 
-[sub_resource type="Environment" id="Environment_lbhrr"]
-background_mode = 3
-ambient_light_source = 1
-
-[sub_resource type="Compositor" id="Compositor_p57ef"]
-
 [node name="game" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -595.0
-offset_top = -346.0
-offset_right = 688.0
-offset_bottom = 327.0
+material = SubResource("CanvasItemMaterial_lbhrr")
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(14, -18)
@@ -52,9 +44,8 @@ position = Vector2(317, -16)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_lbhrr")
-compositor = SubResource("Compositor_p57ef")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(-2, 3)
 color = Color(0, 0, 0, 1)
+energy = 0.78
+blend_mode = 2

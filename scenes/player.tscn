@@ -9,6 +9,7 @@
 size = Vector2(57, 113)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dqkch"]
+light_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
