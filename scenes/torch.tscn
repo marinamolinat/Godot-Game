@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_w3qnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1444"]
-size = Vector2(96.4458, 14.3717)
+size = Vector2(93.5514, 14.3717)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_72pgl"]
 atlas = ExtResource("3_kx7w4")
@@ -92,26 +92,27 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="StaticBody2D" type="RigidBody2D"]
+[node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 4
 script = ExtResource("1_s1444")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-30.8013, -32.9899)
+position = Vector2(-28.2402, -29.8887)
 rotation = 0.880493
 scale = Vector2(0.88, 1)
 shape = SubResource("RectangleShape2D_s1444")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-60, -67)
+position = Vector2(-39, -48)
 color = Color(0.966572, 0.575242, 0.482953, 1)
 texture = ExtResource("3_w3qnr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-34, -34)
+position = Vector2(-29, -32)
 scale = Vector2(2.15625, 2.40625)
 sprite_frames = SubResource("SpriteFrames_vcn41")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.166337
 flip_h = true
+metadata/_edit_lock_ = true

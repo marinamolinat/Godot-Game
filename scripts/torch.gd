@@ -1,14 +1,9 @@
 extends RigidBody2D
 
-var pickUp = true
 @onready var playerBody = get_node("../player")
 
 var equiped = false
-# Called when the node enters the scene tree for the first time.
 
-func _ready():
-	print(playerBody)
-	print("feafajehgf")
 	
 
 func pickup():
@@ -25,15 +20,25 @@ func pickup():
 func throw(direction: Vector2, strength: float = 400.0):
 	if playerBody == null:
 		return
-	  # 1. Reparent to the world (usually to the main scene root or a "World" node)
+
 	var world = get_tree().current_scene
+
+	# Save current global transform
+	var old_transform = global_transform
+
+	# Reparent
 	get_parent().remove_child(self)
 	world.add_child(self)
 
-		# 2. Re-enable physics
-	self.freeze = false
-	 
-	linear_velocity = direction.normalized() * strength
+	# Restore so it doesn’t snap to (0,0)
+	global_transform = old_transform
+
+	# Re-enable physics
+	freeze = false
+
+	# Apply impulse
+	apply_impulse(direction.normalized() * strength, Vector2.ZERO)
+
 	
 		
 	
@@ -43,15 +48,16 @@ func throw(direction: Vector2, strength: float = 400.0):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if pickUp and Input.is_key_pressed(KEY_E):
-		pickUp = false
-		pickup()
-		equiped = true
-	elif equiped and Input.is_key_pressed(KEY_D):
-		throw(Vector2(100, 1000), 4011.1)
-		pickUp = true
-	
+	if Input.is_action_just_pressed("torch "):
+		if not equiped:
+			equiped = true
+			pickup()
+		else: 
+			throw(Vector2(playerBody.direction, 0), 1500)
+			equiped = false
 		
+			
+
 			
 		
 

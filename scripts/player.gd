@@ -5,6 +5,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 var lastDirection = -1
 
+var direction := 1
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -16,21 +18,21 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	direction = Input.get_axis("ui_left", "ui_right")
 
-	if direction == 0:
-		$AnimatedSprite2D.play("idle")
-	else: 
-		$AnimatedSprite2D.play("walk")
-		
 		
 		
 	if direction:
+		self.scale.x = 1
+		$AnimatedSprite2D.play("walk")
+		
 		if direction != lastDirection:
 			lastDirection = direction
 			self.scale.x = -self.scale.x
+			
 		velocity.x = direction * SPEED
 	else:
+		$AnimatedSprite2D.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
