@@ -17,7 +17,7 @@ func pickup():
 	self.freeze = true
 	
 	
-func throw(direction: Vector2, strength: float = 400.0):
+func throw(direction: Vector2, strength: float = 40.0):
 	if playerBody == null:
 		return
 
@@ -35,7 +35,7 @@ func throw(direction: Vector2, strength: float = 400.0):
 
 	# Re-enable physics
 	freeze = false
-
+ 
 	# Apply impulse
 	apply_impulse(direction.normalized() * strength, Vector2.ZERO)
 
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 			equiped = true
 			pickup()
 		else: 
-			throw(Vector2(playerBody.direction, 0), 1500)
+			throw(Vector2(playerBody.direction, 0), 400)
 			equiped = false
 		
 			

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3vvwwwomhoeq"]
+[gd_scene load_steps=17 format=3 uid="uid://b3vvwwwomhoeq"]
 
 [ext_resource type="Texture2D" uid="uid://b6luob2ety2gu" path="res://assets/skeleton standing.png" id="1_crlql"]
 [ext_resource type="Script" uid="uid://c1cg4p77sj1tt" path="res://scenes/skeleton.gd" id="1_txkty"]
@@ -74,7 +74,13 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ivqcw"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bnirc"]
+gradient = SubResource("Gradient_ivqcw")
+
 [node name="skeleton" type="CharacterBody2D"]
+scale = Vector2(0.44, 0.44)
 script = ExtResource("1_txkty")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -100,16 +106,16 @@ frame_progress = 0.212483
 [node name="eyes" type="Node2D" parent="."]
 
 [node name="PointLight2D3" type="PointLight2D" parent="eyes"]
-position = Vector2(17.6306, -66.1679)
-scale = Vector2(-0.0150849, 0.0147375)
+position = Vector2(18, -65)
+scale = Vector2(-0.0555118, 0.0604776)
 color = Color(1, 0.0819121, 0.204087, 1)
 texture = ExtResource("3_ivqcw")
 
-[node name="PointLight2D2" type="PointLight2D" parent="eyes"]
+[node name="PointLight2D4" type="PointLight2D" parent="eyes"]
 position = Vector2(34, -66)
-scale = Vector2(0.015625, 0.015625)
-color = Color(0.771094, 0.139953, 0.251776, 1)
-texture = ExtResource("3_ivqcw")
+scale = Vector2(-0.0555118, 0.0604776)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = SubResource("GradientTexture1D_bnirc")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

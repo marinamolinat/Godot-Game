@@ -46,9 +46,9 @@ animations = [{
 }]
 
 [node name="TextureRect" type="TextureRect"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(20, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(47, 46)
-scale = Vector2(4.92105, 5.14706)
+position = Vector2(9.625, 10.625)
+scale = Vector2(0.986842, 0.985294)
 sprite_frames = SubResource("SpriteFrames_fulsm")

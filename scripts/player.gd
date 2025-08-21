@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var health = 3
-const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
+const SPEED = 100.0
+const JUMP_VELOCITY = -300.0
 var lastDirection = -1
 
 var direction := 1
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 	if direction:
-		self.scale.x = 1
+		
 		$AnimatedSprite2D.play("walk")
 		
 		if direction != lastDirection:
