@@ -34,32 +34,33 @@ func _ready() -> void:
 		
 
 func updateHealth(n: int):
-	health += n
-	drawHearts()
+	if $hurtTimer.is_stopped():
+		health += n
+		drawHearts()
 
-	if n < 0:
-		
-		#death :(
-		if health <= 0:
-			$CollisionShape2D.queue_free()
-			$hurtSound.play()
-			$deathTimer.start()
-			await $deathTimer.timeout
-			get_tree().reload_current_scene()
+		if n < 0:
 			
+			#death :(
+			if health <= 0:
+				$CollisionShape2D.queue_free()
+				$hurtSound.play()
+				$deathTimer.start()
+				await $deathTimer.timeout
+				get_tree().reload_current_scene()
+				
+			
+			effects.play("damage")
+			$hurtSound.play()
+			$hurtTimer.start()
+			await $hurtTimer.timeout
+			
+			
+			
+			
+			
+		effects.play("RESET")
 		
-		effects.play("damage")
-		$hurtSound.play()
-		$hurtTimer.start()
-		await $hurtTimer.timeout
 		
-		
-		
-		
-		
-	effects.play("RESET")
-	
-	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

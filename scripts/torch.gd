@@ -6,6 +6,9 @@ var equiped = false
 
 	
 
+func _ready():
+	$AudioStreamPlayer2D.play()
+	
 func pickup():
 	if playerBody == null:
 		return

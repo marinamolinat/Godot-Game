@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8ts5siibjdhf"]
+[gd_scene load_steps=20 format=3 uid="uid://c8ts5siibjdhf"]
 
 [ext_resource type="Script" uid="uid://bfyfqt32x4nd7" path="res://scripts/torch.gd" id="1_s1444"]
 [ext_resource type="Script" uid="uid://gmrr8buqffte" path="res://scenes/point_light_2d.gd" id="2_o2tjn"]
 [ext_resource type="Texture2D" uid="uid://5f25irlssueq" path="res://assets/Antorch.png" id="3_kx7w4"]
+[ext_resource type="AudioStream" uid="uid://04yycq2pap5p" path="res://assets/fire.wav" id="4_r3k50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1444"]
 size = Vector2(17.4452, 3.45242)
@@ -132,3 +133,10 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.166337
 flip_h = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-9, -11)
+stream = ExtResource("4_r3k50")
+volume_db = 4.602
+autoplay = true
+max_distance = 111.0

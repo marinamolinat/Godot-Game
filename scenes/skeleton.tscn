@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3vvwwwomhoeq"]
+[gd_scene load_steps=15 format=3 uid="uid://b3vvwwwomhoeq"]
 
 [ext_resource type="Texture2D" uid="uid://b6luob2ety2gu" path="res://assets/skeleton standing.png" id="1_crlql"]
-[ext_resource type="Script" uid="uid://c1cg4p77sj1tt" path="res://scenes/skeleton.gd" id="1_txkty"]
+[ext_resource type="Script" uid="uid://c1cg4p77sj1tt" path="res://scripts/skeleton.gd" id="1_txkty"]
 [ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_ivqcw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_txkty"]
-radius = 75.0267
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivqcw"]
+size = Vector2(36, 92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6jny"]
 size = Vector2(34, 86)
@@ -74,21 +74,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_ivqcw"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bnirc"]
-gradient = SubResource("Gradient_ivqcw")
-
 [node name="skeleton" type="CharacterBody2D"]
-scale = Vector2(0.44, 0.44)
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_txkty")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(30, -43)
-shape = SubResource("CircleShape2D_txkty")
+position = Vector2(30, -46)
+shape = SubResource("RectangleShape2D_ivqcw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(30, -45)
@@ -101,21 +96,21 @@ scale = Vector2(0.81, 0.789655)
 sprite_frames = SubResource("SpriteFrames_ft6oh")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.212483
+frame_progress = 0.529196
 
 [node name="eyes" type="Node2D" parent="."]
 
 [node name="PointLight2D3" type="PointLight2D" parent="eyes"]
-position = Vector2(18, -65)
-scale = Vector2(-0.0555118, 0.0604776)
+position = Vector2(20, -72)
+scale = Vector2(-0.0263761, 0.0247642)
 color = Color(1, 0.0819121, 0.204087, 1)
 texture = ExtResource("3_ivqcw")
 
 [node name="PointLight2D4" type="PointLight2D" parent="eyes"]
-position = Vector2(34, -66)
-scale = Vector2(-0.0555118, 0.0604776)
+position = Vector2(36, -72)
+scale = Vector2(-0.0260739, 0.0248948)
 color = Color(1, 0.0819121, 0.204087, 1)
-texture = SubResource("GradientTexture1D_bnirc")
+texture = ExtResource("3_ivqcw")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
