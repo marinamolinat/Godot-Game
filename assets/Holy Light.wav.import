@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfljl88cl8roc"
+path="res://.godot/imported/Holy Light.wav-7cd4b933954a6f6f76cf63fb80ebf3ef.sample"
+
+[deps]
+
+source_file="res://assets/Holy Light.wav"
+dest_files=["res://.godot/imported/Holy Light.wav-7cd4b933954a6f6f76cf63fb80ebf3ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

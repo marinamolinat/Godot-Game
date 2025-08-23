@@ -1,0 +1,155 @@
+[gd_scene load_steps=27 format=3 uid="uid://rem4myihq3tl"]
+
+[ext_resource type="Script" uid="uid://egdb813wnccm" path="res://scenes/letter.gd" id="1_ao5c0"]
+[ext_resource type="Texture2D" uid="uid://8yhoq3xu63no" path="res://assets/Selected/08.png" id="1_r6swm"]
+[ext_resource type="Texture2D" uid="uid://jgh5qo43vc70" path="res://assets/tile set/ST (1).png" id="2_iqwed"]
+[ext_resource type="Texture2D" uid="uid://b8phxmjl2mcpn" path="res://assets/tile set/ST (2).png" id="3_ao5c0"]
+[ext_resource type="Texture2D" uid="uid://bd0lvrch0pnke" path="res://assets/tile set/ST (3).png" id="4_bvrhc"]
+[ext_resource type="Texture2D" uid="uid://xy18o6b0gsi4" path="res://assets/tile set/ST (4).png" id="5_12mji"]
+[ext_resource type="Texture2D" uid="uid://cclrbrka47jux" path="res://assets/tile set/ST (5).png" id="6_lvy72"]
+[ext_resource type="Texture2D" uid="uid://dn3m4ea3o16go" path="res://assets/tile set/ST (6).png" id="7_ygfw4"]
+[ext_resource type="Texture2D" uid="uid://d3wtm45gdtpp5" path="res://assets/tile set/ST (7).png" id="8_vahfa"]
+[ext_resource type="FontFile" uid="uid://h7s57mjxj1y2" path="res://assets/PixelOperator8.ttf" id="9_iqwed"]
+[ext_resource type="Texture2D" uid="uid://bc30fl48y8ly6" path="res://assets/tile set/ST (8).png" id="9_vtdoj"]
+[ext_resource type="AudioStream" uid="uid://dwli0jt4j6nvp" path="res://assets/Paper.mp3" id="12_bvrhc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lg1ls"]
+texture = ExtResource("2_iqwed")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqwed"]
+texture = ExtResource("3_ao5c0")
+margins = Vector2i(1, 0)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ao5c0"]
+texture = ExtResource("4_bvrhc")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvrhc"]
+texture = ExtResource("5_12mji")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_12mji"]
+texture = ExtResource("6_lvy72")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lvy72"]
+texture = ExtResource("7_ygfw4")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygfw4"]
+texture = ExtResource("8_vahfa")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vahfa"]
+texture = ExtResource("9_vtdoj")
+
+[sub_resource type="TileSet" id="TileSet_vtdoj"]
+sources/19 = SubResource("TileSetAtlasSource_lg1ls")
+sources/20 = SubResource("TileSetAtlasSource_iqwed")
+sources/21 = SubResource("TileSetAtlasSource_ao5c0")
+sources/22 = SubResource("TileSetAtlasSource_bvrhc")
+sources/23 = SubResource("TileSetAtlasSource_12mji")
+sources/24 = SubResource("TileSetAtlasSource_lvy72")
+sources/25 = SubResource("TileSetAtlasSource_ygfw4")
+sources/26 = SubResource("TileSetAtlasSource_vahfa")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ao5c0"]
+font = ExtResource("9_iqwed")
+font_size = 8
+font_color = Color(0.572549, 0.427451, 0.282353, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5gbsb"]
+
+[sub_resource type="Animation" id="Animation_fttkb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yk2u2"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -11)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy8tx"]
+_data = {
+&"RESET": SubResource("Animation_fttkb"),
+&"idle": SubResource("Animation_yk2u2")
+}
+
+[node name="letter" type="Node2D"]
+script = ExtResource("1_ao5c0")
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="TileMap" type="TileMap" parent="canvas"]
+position = Vector2(80, 0)
+tile_set = SubResource("TileSet_vtdoj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 20, 0, 65544, 20, 0, 65538, 20, 0, 65539, 20, 0, 65540, 20, 0, 65541, 20, 0, 65542, 20, 0, 65543, 20, 0, 131074, 22, 0, 131075, 22, 0, 131076, 22, 0, 131077, 22, 0, 131078, 22, 0, 196614, 22, 0, 196615, 22, 0, 131079, 22, 0, 196612, 22, 0, 196611, 22, 0, 196610, 22, 0, 196613, 22, 0, 262146, 22, 0, 327682, 22, 0, 393218, 22, 0, 458754, 22, 0, 524290, 22, 0, 589826, 22, 0, 589827, 22, 0, 589828, 22, 0, 589829, 22, 0, 589830, 22, 0, 589831, 22, 0, 524295, 22, 0, 458759, 22, 0, 393223, 22, 0, 327687, 22, 0, 262151, 22, 0, 262150, 22, 0, 262149, 22, 0, 262148, 22, 0, 327683, 22, 0, 393219, 22, 0, 458755, 22, 0, 458756, 22, 0, 524292, 22, 0, 524293, 22, 0, 524294, 22, 0, 458758, 22, 0, 393222, 22, 0, 327686, 22, 0, 327685, 22, 0, 393221, 22, 0, 458757, 22, 0, 524291, 22, 0, 393220, 22, 0, 327684, 22, 0, 262147, 22, 0, 655368, 20, 536870912, 655361, 20, 536870912, 655362, 20, 536870912, 655363, 20, 536870912, 655364, 20, 536870912, 655365, 20, 536870912, 655366, 20, 536870912, 655367, 20, 536870912, 65536, 19, 0, 65545, 19, 268435456, 655369, 19, 805306368, 655360, 19, 536870912, 131073, 22, 0, 196609, 22, 0, 262145, 22, 0, 327681, 22, 0, 393217, 22, 0, 458753, 22, 0, 524289, 22, 0, 589825, 22, 0, 131080, 22, 0, 196616, 22, 0, 262152, 22, 0, 327688, 22, 0, 393224, 22, 0, 458760, 22, 0, 524296, 22, 0, 589832, 22, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="canvas"]
+color = Color(0.85647, 0.801349, 0.747826, 1)
+
+[node name="Label" type="Label" parent="canvas"]
+offset_left = 103.0
+offset_top = 40.0
+offset_right = 231.0
+offset_bottom = 153.0
+text = "Dear Knight, 
+
+Beware of the light. 
+its guides you
+but feeds their
+wrath. 
+Retrieve whats 
+stolen, 
+and set things
+right"
+label_settings = SubResource("LabelSettings_ao5c0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="08" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_r6swm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5gbsb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wy8tx")
+}
+autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_bvrhc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

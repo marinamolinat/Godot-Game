@@ -1,54 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://um1wx6sfjh0q"]
+[gd_scene load_steps=2 format=3 uid="uid://um1wx6sfjh0q"]
 
-[ext_resource type="Texture2D" uid="uid://gq7mw47wwrps" path="res://assets/hearts.png" id="1_cixvg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
-atlas = ExtResource("1_cixvg")
-region = Rect2(0, 34, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
-atlas = ExtResource("1_cixvg")
-region = Rect2(19, 34, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
-atlas = ExtResource("1_cixvg")
-region = Rect2(38, 34, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
-atlas = ExtResource("1_cixvg")
-region = Rect2(57, 34, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
-atlas = ExtResource("1_cixvg")
-region = Rect2(76, 34, 19, 17)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fulsm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jej6c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ej7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oprun")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8ls1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qfm1y")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://ds1e5mwge8o1d" path="res://assets/aybe (2).png" id="1_v30as"]
 
 [node name="TextureRect" type="TextureRect"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(15, 0)
+offset_right = 120.0
+offset_bottom = 200.0
+scale = Vector2(0.0154873, 0.0159618)
+stretch_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(9.625, 10.625)
-scale = Vector2(0.986842, 0.985294)
-sprite_frames = SubResource("SpriteFrames_fulsm")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15, 15)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_v30as")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.720659, 0.344999, 0.365856, 1)

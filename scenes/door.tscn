@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc2a1aibk6on3"]
+[gd_scene load_steps=10 format=3 uid="uid://cc2a1aibk6on3"]
 
 [ext_resource type="Texture2D" uid="uid://dfnkaow5s2pri" path="res://assets/Dungeon Tile Set.png" id="1_ba8gm"]
+[ext_resource type="Script" uid="uid://b27k3xe465yne" path="res://scenes/door.gd" id="1_la1wf"]
+[ext_resource type="AudioStream" uid="uid://b73nms4sn4gc7" path="res://assets/doorClose.mp3" id="2_18pbm"]
+[ext_resource type="AudioStream" uid="uid://bgp5dr3dv3w2e" path="res://assets/doorOpen.mp3" id="2_uvdjg"]
+[ext_resource type="AudioStream" uid="uid://qn7sxmgwv2kr" path="res://assets/doorLocked.mp3" id="4_18pbm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6xrn"]
 atlas = ExtResource("1_ba8gm")
@@ -33,6 +37,11 @@ animations = [{
 size = Vector2(18, 31)
 
 [node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_la1wf")
+
+[node name="close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_18pbm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_50cdl")
@@ -41,3 +50,15 @@ animation = &"closed"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_y5njw")
+
+[node name="open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_uvdjg")
+
+[node name="locked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_18pbm")
+
+[node name="openingTimer" type="Timer" parent="."]
+wait_time = 1.377
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
