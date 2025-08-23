@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://dglpqwo234cyr"]
+
+[ext_resource type="Script" uid="uid://dxkrn5xw7dskm" path="res://scenes/key.gd" id="1_fttkb"]
+[ext_resource type="Texture2D" uid="uid://dmpv2qvmds56t" path="res://assets/Selected/01.png" id="1_up4cr"]
+[ext_resource type="AudioStream" uid="uid://ds78sb4cw0hr" path="res://assets/key.wav" id="2_wy8tx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yk2u2"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_yk2u2"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -11)]
+}
+
+[sub_resource type="Animation" id="Animation_fttkb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy8tx"]
+_data = {
+&"RESET": SubResource("Animation_fttkb"),
+&"idle": SubResource("Animation_yk2u2")
+}
+
+[node name="key" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wy8tx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("1_fttkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yk2u2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_up4cr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wy8tx")
+}
+autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_top = 3.0
+offset_right = 5.0
+offset_bottom = 43.0
+grow_horizontal = 0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_up4cr")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

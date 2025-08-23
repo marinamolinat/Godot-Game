@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc2a1aibk6on3"]
+
+[ext_resource type="Texture2D" uid="uid://dfnkaow5s2pri" path="res://assets/Dungeon Tile Set.png" id="1_ba8gm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6xrn"]
+atlas = ExtResource("1_ba8gm")
+region = Rect2(208, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0phs7"]
+atlas = ExtResource("1_ba8gm")
+region = Rect2(192, 160, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50cdl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6xrn")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0phs7")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
+size = Vector2(18, 31)
+
+[node name="Area2D" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_50cdl")
+animation = &"closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_y5njw")

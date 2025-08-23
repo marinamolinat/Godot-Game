@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_ivqcw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivqcw"]
-size = Vector2(36, 92)
+size = Vector2(56, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6jny"]
-size = Vector2(34, 86)
+size = Vector2(34, 78)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plk42"]
 atlas = ExtResource("1_crlql")
@@ -82,11 +82,11 @@ script = ExtResource("1_txkty")
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(30, -46)
+position = Vector2(28, -42)
 shape = SubResource("RectangleShape2D_ivqcw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(30, -45)
+position = Vector2(30, -41)
 shape = SubResource("RectangleShape2D_x6jny")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

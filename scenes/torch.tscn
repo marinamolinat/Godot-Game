@@ -137,6 +137,4 @@ flip_h = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-9, -11)
 stream = ExtResource("4_r3k50")
-volume_db = 4.602
 autoplay = true
-max_distance = 111.0

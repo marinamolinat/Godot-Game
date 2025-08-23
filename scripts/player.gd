@@ -4,12 +4,23 @@ var health = 3
 const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 var lastDirection = -1
+var hasKey = false
 
 var direction := 1
 
 @onready var heart = preload("res://scenes/heart.tscn")
 @onready var effects = $effects
+@onready var animations = $AnimatedSprite2D
+@onready var hurtTimer = $hurtTimer
+@onready var deathTimer = $deathTimer
+@onready var hurtSound = $hurtSound
 
+
+func _ready ():
+	
+	drawHearts()
+	effects.play("RESET")
+	
 
 func drawHearts():
 	var parent = $CanvasLayer/HBoxContainer
@@ -27,13 +38,12 @@ func drawHearts():
 
 
 
-func _ready() -> void:
-	drawHearts()
-	effects.play("RESET")
-	
 		
 
 func updateHealth(n: int):
+	if not is_inside_tree():
+		return 
+	
 	if $hurtTimer.is_stopped():
 		health += n
 		drawHearts()
@@ -43,14 +53,14 @@ func updateHealth(n: int):
 			#death :(
 			if health <= 0:
 				$CollisionShape2D.queue_free()
-				$hurtSound.play()
+				$deathSound.play()
 				$deathTimer.start()
 				await $deathTimer.timeout
 				get_tree().reload_current_scene()
 				
 			
 			effects.play("damage")
-			$hurtSound.play()
+			hurtSound.play()
 			$hurtTimer.start()
 			await $hurtTimer.timeout
 			
@@ -73,13 +83,20 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_axis("ui_left", "ui_right")
+	if  Input.is_action_pressed("left"):
+		direction = -1
+	elif Input.is_action_pressed("right"):
+		direction = 1
+	else: 
+		direction = 0
+
+
 
 		
 		
 	if direction:
 		
-		$AnimatedSprite2D.play("walk")
+		animations.play("walk")
 		
 		if direction != lastDirection:
 			lastDirection = direction
@@ -87,7 +104,7 @@ func _physics_process(delta: float) -> void:
 			
 		velocity.x = direction * SPEED
 	else:
-		$AnimatedSprite2D.play("idle")
+		animations.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
