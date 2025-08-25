@@ -1,0 +1,251 @@
+[gd_scene load_steps=19 format=3 uid="uid://ua01fjwjl7c"]
+
+[ext_resource type="Texture2D" uid="uid://cdqt0j5n26y3e" path="res://assets/moth boss (1).png" id="1_jiogy"]
+[ext_resource type="Script" uid="uid://bbred40hsohuj" path="res://scenes/boss_moth.gd" id="1_s285l"]
+[ext_resource type="AudioStream" uid="uid://u321n6lswm4p" path="res://assets/angel-wings-opening01-177180.mp3" id="2_r64cn"]
+[ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="2_s285l"]
+[ext_resource type="AudioStream" uid="uid://d4esysncqmufd" path="res://assets/fox-scream-in-the-forest-26634 (mp3cut.net).mp3" id="4_a4wrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4wrp"]
+size = Vector2(89, 233.7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r64cn"]
+size = Vector2(122.54, 228.82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcgqq"]
+atlas = ExtResource("1_jiogy")
+region = Rect2(0, 0, 736, 736)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1mlc"]
+atlas = ExtResource("1_jiogy")
+region = Rect2(736, 0, 736, 736)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jda3s"]
+atlas = ExtResource("1_jiogy")
+region = Rect2(0, 736, 736, 736)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsy6j"]
+atlas = ExtResource("1_jiogy")
+region = Rect2(736, 736, 736, 736)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t56ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcgqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1mlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jda3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsy6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s285l"]
+bg_color = Color(0.705882, 0.494118, 0.858824, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4wrp"]
+bg_color = Color(0.143007, 0.567715, 0.761997, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_r64cn"]
+resource_name = "hurt"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.582847, 0.069907, 0.451236, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t56ga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_easgu"]
+resource_name = "DEATH"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.51, 1, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, -20), Vector2(-4, 31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.87087]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_easgu"]
+_data = {
+&"DEATH": SubResource("Animation_easgu"),
+&"RESET": SubResource("Animation_t56ga"),
+&"hurt": SubResource("Animation_r64cn")
+}
+
+[node name="bossMoth" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_s285l")
+
+[node name="wings" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_r64cn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(110.94, -122.65)
+shape = SubResource("RectangleShape2D_a4wrp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(128.21, -122.15)
+shape = SubResource("RectangleShape2D_r64cn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+clip_children = 2
+use_parent_material = true
+position = Vector2(102.1, -156.66)
+scale = Vector2(0.566984, 0.518985)
+sprite_frames = SubResource("SpriteFrames_t56ga")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
+offset_left = -180.076
+offset_top = -353.266
+offset_right = 383.924
+offset_bottom = 307.734
+color = Color(1, 1, 1, 0)
+
+[node name="eyes" type="Node2D" parent="."]
+
+[node name="PointLight2D3" type="PointLight2D" parent="eyes"]
+position = Vector2(20, -72)
+scale = Vector2(-0.0263761, 0.0247642)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("2_s285l")
+
+[node name="PointLight2D4" type="PointLight2D" parent="eyes"]
+position = Vector2(42, -70)
+scale = Vector2(-0.0260739, 0.0248948)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("2_s285l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 121.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_s285l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a4wrp")
+value = 100.0
+rounded = true
+fill_mode = 1
+show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a4wrp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_easgu")
+}
+
+[node name="deathScream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a4wrp")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

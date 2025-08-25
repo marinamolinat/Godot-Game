@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://ddvc37w7ipyrn"]
+
+[ext_resource type="Texture2D" uid="uid://c5r2raai4u2on" path="res://assets/moth.png" id="1_fog0t"]
+[ext_resource type="Script" uid="uid://cspgshmmnf7ib" path="res://moth.gd" id="2_ic5kq"]
+[ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_50c5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4q7"]
+size = Vector2(101, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_773ly"]
+size = Vector2(98, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkftq"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1af"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(600, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkjr2"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(0, 600, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvxnn"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(600, 600, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q37b"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(0, 1200, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1571b"]
+atlas = ExtResource("1_fog0t")
+region = Rect2(600, 1200, 600, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bmd1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkftq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm1af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkjr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvxnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q37b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1571b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(0, -3)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_ic5kq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(23.5, -32.5)
+shape = SubResource("RectangleShape2D_1r4q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -34.5)
+shape = SubResource("RectangleShape2D_773ly")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(30, -43)
+scale = Vector2(0.81, 0.789655)
+sprite_frames = SubResource("SpriteFrames_bmd1v")
+autoplay = "default"
+frame_progress = 0.255191
+
+[node name="eyes" type="Node2D" parent="."]
+
+[node name="PointLight2D3" type="PointLight2D" parent="eyes"]
+position = Vector2(20, -72)
+scale = Vector2(-0.0263761, 0.0247642)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("3_50c5x")
+
+[node name="PointLight2D4" type="PointLight2D" parent="eyes"]
+position = Vector2(42, -70)
+scale = Vector2(-0.0260739, 0.0248948)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("3_50c5x")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj6qonsusepbu"]
+
+[ext_resource type="Script" uid="uid://6dk0xc3hrirj" path="res://minion.gd" id="1_b4arb"]
+[ext_resource type="Texture2D" uid="uid://c5r2raai4u2on" path="res://assets/moth.png" id="2_1ddg2"]
+[ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_qqrhl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll15l"]
+size = Vector2(100, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnthb"]
+size = Vector2(98, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkftq"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1af"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(600, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkjr2"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(0, 600, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvxnn"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(600, 600, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q37b"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(0, 1200, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1571b"]
+atlas = ExtResource("2_1ddg2")
+region = Rect2(600, 1200, 600, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw2tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkftq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm1af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkjr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvxnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q37b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1571b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="minion" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_b4arb")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -0.103485)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(30, -39.8965)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_ll15l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -34.6035)
+shape = SubResource("RectangleShape2D_cnthb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(30, -43.1035)
+scale = Vector2(0.81, 0.789655)
+sprite_frames = SubResource("SpriteFrames_iw2tu")
+autoplay = "default"
+
+[node name="eyes" type="Node2D" parent="."]
+position = Vector2(0, -0.103485)
+
+[node name="PointLight2D3" type="PointLight2D" parent="eyes"]
+position = Vector2(20, -72)
+scale = Vector2(-0.0263761, 0.0247642)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("3_qqrhl")
+
+[node name="PointLight2D4" type="PointLight2D" parent="eyes"]
+position = Vector2(42, -70)
+scale = Vector2(-0.0260739, 0.0248948)
+color = Color(1, 0.0819121, 0.204087, 1)
+texture = ExtResource("3_qqrhl")
+
+[node name="death" type="Timer" parent="."]
+wait_time = 8.0
+
+[connection signal="timeout" from="death" to="." method="_on_death_timeout"]

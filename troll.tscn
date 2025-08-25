@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgrpae0qy7x3t"]
+
+[ext_resource type="Script" uid="uid://b437j6qhd0up2" path="res://troll.gd" id="1_xm7vg"]
+[ext_resource type="Texture2D" uid="uid://c8wl8cnfurrmr" path="res://assets/troll.png" id="2_3banc"]
+[ext_resource type="Texture2D" uid="uid://du7ymwy3vtsvf" path="res://assets/light.png" id="3_dno6u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfb57"]
+radius = 25.0799
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kaq2"]
+size = Vector2(34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a584y"]
+atlas = ExtResource("2_3banc")
+region = Rect2(0, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bwth"]
+atlas = ExtResource("2_3banc")
+region = Rect2(0, 70, 70, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8b1m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a584y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bwth")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xm7vg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(28, -27)
+shape = SubResource("CircleShape2D_rfb57")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(30, -25)
+shape = SubResource("RectangleShape2D_2kaq2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(29, -26)
+scale = Vector2(0.81, 0.789655)
+sprite_frames = SubResource("SpriteFrames_8b1m1")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.0809796
+
+[node name="eyes" type="Node2D" parent="."]
+
+[node name="PointLight2D3" type="PointLight2D" parent="eyes"]
+position = Vector2(29, -38)
+scale = Vector2(-0.0263761, 0.0247642)
+color = Color(0.913725, 0.815686, 0, 1)
+texture = ExtResource("3_dno6u")
+
+[node name="PointLight2D4" type="PointLight2D" parent="eyes"]
+position = Vector2(39, -38)
+scale = Vector2(-0.0260739, 0.0248948)
+color = Color(0.913725, 0.815686, 0, 1)
+texture = ExtResource("3_dno6u")

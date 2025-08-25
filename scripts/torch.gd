@@ -9,6 +9,7 @@ var equiped = false
 func _ready():
 	$AudioStreamPlayer2D.play()
 	
+	
 func pickup():
 	if playerBody == null:
 		return
@@ -40,7 +41,7 @@ func throw(direction: Vector2, strength: float = 40.0):
 	freeze = false
  
 	# Apply impulse
-	apply_impulse(direction.normalized() * strength, Vector2.ZERO)
+	apply_impulse((direction.normalized() * strength), Vector2.ZERO)
 
 	
 		
@@ -56,7 +57,8 @@ func _process(delta: float) -> void:
 			equiped = true
 			pickup()
 		else: 
-			throw(Vector2(playerBody.direction, 0), 400)
+			
+			throw(Vector2(playerBody.lastDirection, 0), 400)
 			equiped = false
 		
 			

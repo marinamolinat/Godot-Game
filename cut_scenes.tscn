@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://bmxhkw003l65e"]
+
+[ext_resource type="Script" uid="uid://uxvr8ln260i8" path="res://cut_scenes.gd" id="1_gefsc"]
+[ext_resource type="Texture2D" uid="uid://c1grkb1t4rbfn" path="res://assets/1.png" id="2_5v6xd"]
+[ext_resource type="Texture2D" uid="uid://dalssryrkte4k" path="res://assets/2.webp" id="3_y7huq"]
+[ext_resource type="Texture2D" uid="uid://p7qu6pmvo6qo" path="res://assets/3.webp" id="4_m6tfu"]
+[ext_resource type="Texture2D" uid="uid://sfe0htwx0a7t" path="res://assets/4.webp" id="5_62w4y"]
+[ext_resource type="Texture2D" uid="uid://5rt3hf15li52" path="res://assets/5.webp" id="6_wg8ht"]
+[ext_resource type="Texture2D" uid="uid://cgiiqgv5d1r6s" path="res://assets/6.webp" id="7_fcdoa"]
+[ext_resource type="Texture2D" uid="uid://dg8fbr4qorc7c" path="res://instructions.png" id="8_gefsc"]
+[ext_resource type="AudioStream" uid="uid://dfljl88cl8roc" path="res://assets/Holy Light.wav" id="9_b6wvq"]
+[ext_resource type="FontFile" uid="uid://h7s57mjxj1y2" path="res://assets/PixelOperator8.ttf" id="10_5v6xd"]
+
+[sub_resource type="Animation" id="Animation_wxbrt"]
+resource_name = "new_animation"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 3, 7.1, 11.4667, 16.4667, 21.2667, 27.6667),
+"transitions": PackedFloat32Array(1, 1, 1.31951, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_5v6xd"), ExtResource("3_y7huq"), ExtResource("4_m6tfu"), ExtResource("5_62w4y"), ExtResource("6_wg8ht"), ExtResource("7_fcdoa"), ExtResource("8_gefsc")]
+}
+
+[sub_resource type="Animation" id="Animation_hoc3c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_5v6xd")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gnf3x"]
+_data = {
+&"RESET": SubResource("Animation_hoc3c"),
+&"new_animation": SubResource("Animation_wxbrt")
+}
+
+[node name="cutScenes" type="Node2D"]
+script = ExtResource("1_gefsc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gnf3x")
+}
+autoplay = "new_animation"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b6wvq")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 2
+texture_repeat = 1
+position = Vector2(162, 98)
+scale = Vector2(0.555184, 0.492462)
+texture = ExtResource("2_5v6xd")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 239.0
+offset_top = 158.0
+offset_right = 341.0
+offset_bottom = 182.0
+scale = Vector2(0.781694, 0.781694)
+theme_override_fonts/font = ExtResource("10_5v6xd")
+text = "Skip all"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

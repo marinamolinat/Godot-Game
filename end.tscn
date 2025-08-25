@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dao6ce3fyhoqh"]
+
+[ext_resource type="Texture2D" uid="uid://cpo3mnu16w4pj" path="res://assets/space.jpg" id="1_75yvt"]
+[ext_resource type="Texture2D" uid="uid://di8vfh7s3cwue" path="res://assets/Moon_Phases_64x64/Moon_Phase_1.png" id="2_jclhh"]
+[ext_resource type="FontFile" uid="uid://h7s57mjxj1y2" path="res://assets/PixelOperator8.ttf" id="3_m3e5g"]
+[ext_resource type="AudioStream" uid="uid://dfljl88cl8roc" path="res://assets/Holy Light.wav" id="4_u6pt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_beduj"]
+font = ExtResource("3_m3e5g")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-38, -3)
+scale = Vector2(0.722339, 0.677284)
+texture = ExtResource("1_75yvt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MoonPhase1" type="Sprite2D" parent="."]
+position = Vector2(-104.836, -20.715)
+scale = Vector2(0.932375, 0.991093)
+texture = ExtResource("2_jclhh")
+
+[node name="Label" type="Label" parent="MoonPhase1"]
+offset_left = 12.3839
+offset_top = 70.1821
+offset_right = 264.384
+offset_bottom = 93.1821
+text = "The moon is back :))"
+label_settings = SubResource("LabelSettings_beduj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_u6pt3")
+autoplay = true

@@ -113,20 +113,17 @@ layer_0/tile_data = PackedInt32Array(65537, 20, 0, 65544, 20, 0, 65538, 20, 0, 6
 color = Color(0.85647, 0.801349, 0.747826, 1)
 
 [node name="Label" type="Label" parent="canvas"]
-offset_left = 103.0
-offset_top = 40.0
-offset_right = 231.0
-offset_bottom = 153.0
-text = "Dear Knight, 
-
-Beware of the light. 
-its guides you
-but feeds their
-wrath. 
-Retrieve whats 
-stolen, 
-and set things
-right"
+offset_left = 102.0
+offset_top = 41.0
+offset_right = 230.0
+offset_bottom = 154.0
+text = "After opening 
+a door, press E
+to enter to the 
+next room.
+Press E to close
+this scroll
+as well :)"
 label_settings = SubResource("LabelSettings_ao5c0")
 
 [node name="Area2D" type="Area2D" parent="."]

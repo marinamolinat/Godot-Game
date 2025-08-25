@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed: float = 40.0
 @onready var target = get_node("../torch") # path to your torch node
 @onready var lastX = position.x
-var jumpForce = -300
+var jumpForce = -200
 
 
 func _physics_process(delta: float) -> void:

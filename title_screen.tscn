@@ -1,27 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://vqblbev7twtn"]
+[gd_scene load_steps=5 format=3 uid="uid://vqblbev7twtn"]
 
 [ext_resource type="Script" uid="uid://dxm6chv2uul8g" path="res://title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://djne61q4jm64r" path="res://assets/title.png" id="2_05l2w"]
 [ext_resource type="AudioStream" uid="uid://d4idwtl3pt7dv" path="res://assets/CaveDtram.mp3" id="2_ak2if"]
+[ext_resource type="FontFile" uid="uid://h7s57mjxj1y2" path="res://assets/PixelOperator8.ttf" id="3_hafda"]
 
 [node name="title screen" type="Node2D"]
 script = ExtResource("1_v6p8y")
 
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_05l2w")
+
 [node name="Button" type="Button" parent="."]
-offset_left = -21.0
-offset_top = 7.0
-offset_right = 20.0
-offset_bottom = 38.0
-text = "Play"
+offset_left = -37.0
+offset_top = -13.0
+offset_right = 37.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("3_hafda")
+text = "Start"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Label" type="Label" parent="."]
-offset_left = -57.0
-offset_top = -74.0
-offset_right = 54.0
-offset_bottom = -31.0
-text = "The torch :)"
-horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ak2if")
